@@ -72,9 +72,10 @@ namespace tf {
 template <typename... ArgsT>
 void throw_se(const char* fname, const size_t line, Error::Code c, ArgsT&&... args) {
   std::ostringstream oss;
-  oss << "[" << fname << ":" << line << "] ";
+  oss << "ERROR [" << fname << ":" << line << "] ";
   (oss << ... << args);
-  throw std::system_error(c, oss.str());
+  abort();
+  // throw std::system_error(c, oss.str());
 }
 
 };  // ------------------------------------------------------------------------
